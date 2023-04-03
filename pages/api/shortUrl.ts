@@ -23,7 +23,7 @@ export default async function handler(
 		);
 		return res
 			.status(200)
-			.json({ url: `${process.env.API_URL}redirect?to=${hash}` });
+			.json({ url: `${process.env.NEXT_PUBLIC_API_URL}redirect?to=${hash}` });
 	} catch (e) {
 		//return
 		return res.status(500).json({ message: "Internal server error!" });
