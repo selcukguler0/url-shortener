@@ -1,9 +1,27 @@
-import Head from 'next/head'
-import { Inter } from 'next/font/google'
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import Head from "next/head";
+import { useState } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Home() {
-  return (
+	const [url, setUrl] = useState<string>("");
+
+	const shortUrl = async () => {
+		const res = await fetch("/api/shortUrl", {
+			method: "POST",
+			body: JSON.stringify({ url }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const data = await res.json();
+		await navigator.clipboard.writeText(data.url);
+		notify();
+		console.log(data);
+	};
+	const notify = () => toast("Url Copied to Clipboard!");
+	return (
 		<>
 			<Head>
 				<title>Create Next App</title>
@@ -11,6 +29,7 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<ToastContainer />
 			<div className="h-full leading-normal tracking-normal text-indigo-400 m-6 bg-cover bg-fixed">
 				{/*Nav*/}
 				<div className="w-full container mx-auto">
@@ -59,6 +78,8 @@ export default function Home() {
 									Enter your url
 								</label>
 								<input
+									onChange={(e) => setUrl(e.target.value)}
+									value={url}
 									className="shadow appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
 									id="url"
 									type="text"
@@ -67,6 +88,7 @@ export default function Home() {
 							</div>
 							<div className="flex items-center justify-between pt-4">
 								<button
+									onClick={shortUrl}
 									className="bg-gradient-to-r from-purple-800 to-green-500 hover:from-pink-500 hover:to-green-500 text-white font-bold py-2 px-4 rounded focus:ring transform transition hover:scale-105 duration-300 ease-in-out"
 									type="button">
 									{"Let's Short!"}

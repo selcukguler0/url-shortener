@@ -4,42 +4,36 @@ import { CountryChart } from "@/charts/CountryChart";
 
 export default function Dashboard() {
 	useEffect(() => {
-		let scrollTop = 0;
-		let easedScrollTop = 0;
-		let content = document.querySelector(".js-content");
-		let $fakeScroll = document.querySelector(".js-fake-scroll");
+		// let scrollTop = 0;
+		// let easedScrollTop = 0;
+		// let content = document.querySelector(".js-content");
+		// let $fakeScroll = document.querySelector(".js-fake-scroll");
 
-		document.addEventListener("scroll", () => {
-			scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		});
+		// document.addEventListener("scroll", () => {
+		// 	scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		// });
 
-		function resize() {
-			$fakeScroll.style.height = content.clientHeight + "px";
-		}
+		// function resize() {
+		// 	$fakeScroll.style.height = content.clientHeight + "px";
+		// }
 
-		window.addEventListener("resize", resize);
+		// window.addEventListener("resize", resize);
 
-		function update() {
-			requestAnimationFrame(update);
-			easedScrollTop += (scrollTop - easedScrollTop) * 0.1;
-			content.style.transform =
-				"translateY(" + easedScrollTop * -1 + "px) translateZ(0)";
-		}
+		// function update() {
+		// 	requestAnimationFrame(update);
+		// 	easedScrollTop += (scrollTop - easedScrollTop) * 0.1;
+		// 	content.style.transform =
+		// 		"translateY(" + easedScrollTop * -1 + "px) translateZ(0)";
+		// }
 
-		resize();
-		update();
+		// resize();
+		// update();
 	}, []);
 
 	return (
 		<>
 			<div className="head">
 				<div className="search">
-					<svg width={15} height={15} viewBox="0 0 512 512">
-						<path
-							d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-							fill="currentColor"
-						/>
-					</svg>
 				</div>
 				<div className="actions">
 					<ul>
@@ -71,7 +65,7 @@ export default function Dashboard() {
 				</div>
 			</div>
 			<div className="nav">
-				<li>
+				<li className="active">
 					<a href="#">
 						<svg width={16} height={16} viewBox="0 0 512 512">
 							<path
@@ -83,13 +77,13 @@ export default function Dashboard() {
 					</a>
 					<ul>
 						<li>
-							<a href="#">Advertisement</a>
+							<a aria-disabled></a>
 						</li>
 						<li>
-							<a href="#">Management</a>
+							<a aria-disabled></a>
 						</li>
 						<li>
-							<a href="#">Statistics</a>
+							<a aria-disabled></a>
 						</li>
 					</ul>
 				</li>
@@ -103,60 +97,13 @@ export default function Dashboard() {
 						</svg>
 						Orders
 					</a>
-					<ul>
-						<li>
-							<a href="#">Incomes</a>
-						</li>
-						<li>
-							<a href="#">Xpenses</a>
-						</li>
-						<li>
-							<a href="#">Spending</a>
-						</li>
-						<li>
-							<a href="#">Orders</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#">
-						<svg width={16} height={16} viewBox="0 0 640 512">
-							<path
-								fill="currentColor"
-								d="M640 48V0H384c-17.7 0-32 14.3-32 32v340.6L5.9 465.4c-4.3 1.1-6.8 5.5-5.7 9.8l8.3 30.9c1.1 4.3 5.5 6.8 9.8 5.7L416.5 405c2.7 59.5 51.4 107 111.5 107 61.9 0 112-50.1 112-112s-50.1-112-112-112c-44.6 0-82.8 26.3-100.8 64H400V48h240zM528 336c35.3 0 64 28.7 64 64s-28.7 64-64 64-64-28.7-64-64 28.7-64 64-64zM50.2 375.6c2.3 8.5 11.1 13.6 19.6 11.3l216.4-58c8.5-2.3 13.6-11.1 11.3-19.6l-49.7-185.5c-2.3-8.5-11.1-13.6-19.6-11.3L151 133.3l24.8 92.7-61.8 16.5-24.8-92.7-77.3 20.7C3.4 172.8-1.7 181.6.6 190.1l49.6 185.5z"
-							/>
-						</svg>
-						Shippings
-					</a>
-					<ul>
-						<li>
-							<a href="#">Delivered</a>
-						</li>
-						<li>
-							<a href="#">Pending</a>
-						</li>
-						<li>
-							<a href="#">Cancelled</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="#">
-						<svg width={16} height={16} viewBox="0 0 640 512">
-							<path
-								fill="currentColor"
-								d="M256 288c0 35.35 28.66 64 64 64 35.35 0 64-28.65 64-64s-28.65-64-64-64c-35.34 0-64 28.65-64 64zm224 0c0 35.35 28.66 64 64 64 35.35 0 64-28.65 64-64s-28.65-64-64-64c-35.34 0-64 28.65-64 64zM96 352c35.35 0 64-28.65 64-64s-28.65-64-64-64c-35.34 0-64 28.65-64 64s28.66 64 64 64zm480 32h-64c-35.34 0-64 28.65-64 64v32c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32v-32c0-35.35-28.66-64-64-64zm-224 0h-64c-35.34 0-64 28.65-64 64v32c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32v-32c0-35.35-28.66-64-64-64zm-224 0H64c-35.34 0-64 28.65-64 64v32c0 17.67 14.33 32 32 32h128c17.67 0 32-14.33 32-32v-32c0-35.35-28.66-64-64-64zM96 64h448v128c24.68 0 46.98 9.62 64 24.97V49.59C608 22.25 586.47 0 560 0H80C53.53 0 32 22.25 32 49.59v167.38C49.02 201.62 71.33 192 96 192V64z"
-							/>
-						</svg>
-						Users group
-					</a>
 				</li>
 			</div>
 			<div className="content js-content">
 				{/* device chart */}
 				<DeviceChart className="content_item" />
 				<CountryChart />
-				
+
 				<div className="content_item">
 					<header>
 						<span>
@@ -711,7 +658,7 @@ export default function Dashboard() {
 						</a>
 					</footer>
 				</div>
-				
+
 				<div className="content_item">
 					<header>
 						<span>
